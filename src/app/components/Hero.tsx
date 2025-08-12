@@ -4,22 +4,22 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Linkedin, Download, ChevronRight, Github, Mail } from "lucide-react";
-import { useRouter } from "next/navigation"; 
+import { useRouter } from "next/navigation";
 
 interface HeroProps {
   onViewProjectClick: () => void;
 }
 
 export default function Hero({ onViewProjectClick }: HeroProps) {
-   const router = useRouter();
+  const router = useRouter();
   const [isHovered, setIsHovered] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isTabletOrMobile, setIsTabletOrMobile] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    const checkDeviceSize = () => setIsTabletOrMobile(window.innerWidth < 1024);
+    checkDeviceSize();
+    window.addEventListener("resize", checkDeviceSize);
+    return () => window.removeEventListener("resize", checkDeviceSize);
   }, []);
 
   const handleDownloadCV = () => {
@@ -33,51 +33,76 @@ export default function Hero({ onViewProjectClick }: HeroProps) {
   };
 
   const handleProfileClick = () => {
-    router.push("/about"); // navigasi ke /about
+    router.push("/about");
   };
 
   return (
     <section
-      id="hero"
-      className="min-h-screen flex flex-col md:flex-row items-center justify-center gap-10 px-6 md:px-16"
-    >
+  id="hero"
+  className="min-h-screen flex flex-col lg:flex-row items-center justify-center gap-10 px-6 md:px-12 lg:px-16 pb-6 sm:pb-8 md:pb-10 lg:pb-10"
+>
+
+      {/* Text Section */}
       <motion.div
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-center md:text-left max-w-xl flex flex-col gap-6"
+        className="text-center lg:text-left max-w-xl flex flex-col gap-6"
       >
         <div className="space-y-6">
-          <h1 className="text-2xl md:text-4xl text-gray-900 leading-tight">
-  Hello, I&apos;m{" "}
-  <span className="text-[#B99470] font-bold">Nazwatuzzahro!</span>
-</h1>
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl text-gray-900 leading-tight">
+            Hello, I&apos;m{" "}
+            <span className="text-[#B99470] font-bold">Nazwatuzzahro!</span>
+          </h1>
 
-
-          <p className="text-lg text-gray-600">
-            I am a <span className="font-medium">Web Developer</span> and <span  className="font-medium">UI/UX Designer</span> specializing in building modern, responsive, and user-friendly applications.
+          <p className="text-base sm:text-lg text-gray-600">
+            I am a <span className="font-medium">Web Developer</span> and{" "}
+            <span className="font-medium">UI/UX Designer</span> specializing in
+            building modern, responsive, and user-friendly applications.
           </p>
         </div>
 
-        <div className="flex justify-center md:justify-start gap-4">
+        {/* Buttons */}
+        <div className="flex justify-center lg:justify-start gap-4">
+          {/* Button CV */}
           <button
             onClick={handleDownloadCV}
             className="inline-flex items-center justify-center bg-[#FEFAE0] px-3 py-1.5 rounded-full tracking-wide shadow-lg hover:shadow-indigo-500/50 transition-transform duration-300 hover:scale-105 active:scale-95"
           >
-            <Download className="text-[#5F6F52] mr-2" size={isMobile ? 16 : 20} />
-            <p className={`text-[#5F6F52] ${isMobile ? "text-sm" : "text-base"}`}>Download CV</p>
+            <Download
+              className="text-[#5F6F52] mr-2"
+              size={isTabletOrMobile ? 16 : 20}
+            />
+            <p
+              className={`text-[#5F6F52] ${
+                isTabletOrMobile ? "text-sm" : "text-base"
+              }`}
+            >
+              Download CV
+            </p>
           </button>
 
+          {/* Button What I Do */}
           <button
             onClick={onViewProjectClick}
             className="inline-flex items-center justify-center bg-[#FEFAE0] px-3 py-1.5 rounded-full tracking-wide shadow-lg hover:shadow-indigo-500/50 transition-transform duration-300 hover:scale-105 active:scale-95"
           >
-            <p className={`text-[#5F6F52] mr-2 ${isMobile ? "text-sm" : "text-base"}`}>What I Do</p>
-            <ChevronRight className="text-[#5F6F52]" size={isMobile ? 16 : 20} />
+            <p
+              className={`text-[#5F6F52] mr-2 ${
+                isTabletOrMobile ? "text-sm" : "text-base"
+              }`}
+            >
+              What I Do
+            </p>
+            <ChevronRight
+              className="text-[#5F6F52]"
+              size={isTabletOrMobile ? 16 : 20}
+            />
           </button>
         </div>
       </motion.div>
 
+      {/* Profile Image + Social Icons */}
       <motion.div
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
@@ -88,7 +113,7 @@ export default function Hero({ onViewProjectClick }: HeroProps) {
           className="relative flex items-center cursor-pointer"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          onClick={handleProfileClick} // klik foto
+          onClick={handleProfileClick}
           role="button"
           tabIndex={0}
           onKeyDown={(e) => {
@@ -97,7 +122,7 @@ export default function Hero({ onViewProjectClick }: HeroProps) {
           aria-label="Go to About page"
         >
           <motion.div
-            className="relative w-60 h-60 md:w-80 md:h-80 overflow-hidden rounded-lg shadow-[0_8px_0_rgba(0,0,0,0.08)]"
+            className="relative w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 overflow-hidden rounded-lg shadow-[0_8px_0_rgba(0,0,0,0.08)]"
             whileHover={{ scale: 1.05, rotate: 2 }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300 }}
@@ -111,16 +136,18 @@ export default function Hero({ onViewProjectClick }: HeroProps) {
             />
           </motion.div>
 
+          {/* Social icons */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={
-              isHovered || isMobile
+              isHovered || isTabletOrMobile
                 ? { opacity: 1, x: 0 }
                 : { opacity: 0, x: 20 }
             }
             transition={{ type: "spring", stiffness: 200, damping: 20 }}
-            className="absolute right-[-64px] top-1/2 -translate-y-1/2 flex flex-col gap-4"
+            className="absolute right-[-56px] lg:right-[-64px] top-1/2 -translate-y-1/2 flex flex-col gap-4"
           >
+            {/* GitHub */}
             <button
               className="p-3 rounded-full bg-[#B99470] text-white shadow-lg hover:bg-[#a07d55] transition"
               onClick={() =>
@@ -130,6 +157,7 @@ export default function Hero({ onViewProjectClick }: HeroProps) {
             >
               <Github size={20} />
             </button>
+            {/* Email */}
             <button
               className="p-3 rounded-full bg-[#B99470] text-white shadow-lg hover:bg-[#a07d55] transition"
               onClick={() => window.open("mailto:nazwatuzzahroo@gmail.com")}
@@ -137,6 +165,7 @@ export default function Hero({ onViewProjectClick }: HeroProps) {
             >
               <Mail size={20} />
             </button>
+            {/* LinkedIn */}
             <button
               className="p-3 rounded-full bg-[#B99470] text-white shadow-lg hover:bg-[#a07d55] transition"
               onClick={() =>

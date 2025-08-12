@@ -20,7 +20,7 @@ export default function SkillsSection({ onBack }: SkillsSectionProps) {
   return (
    <section
   id="whatIDo"
-  className="min-h-screen flex flex-col justify-center items-center py-16 bg-gray-50"
+  className="min-h-screen flex flex-col justify-center items-center pt-16 pb-8 sm:pb-10 md:pb-12 lg:pb-20 bg-gray-50"
   style={{
     background: `linear-gradient(200deg, #ffffff 40%, #E4F68F 100%)`,
   }}
@@ -30,14 +30,14 @@ export default function SkillsSection({ onBack }: SkillsSectionProps) {
     {/* Header sejajar */}
     <div className="grid grid-cols-[auto_1fr_auto] items-center mb-8">
       <button onClick={onBack} className="">
-        <ChevronLeft className="text-[#B99470]" size={24} />
+        <ChevronLeft className="text-[#B99470]" size={28} />
       </button>
       <h2 className="text-2xl font-bold text-[#B99470] text-center">What I Do</h2>
       <div /> {/* spacer */}
     </div>
 
     {/* Grid Skills */}
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
       {skills.map(({ id, title, description, icon: Icon, image }) => (
         <motion.div
           key={id}
