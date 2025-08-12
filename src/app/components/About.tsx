@@ -7,13 +7,6 @@ import { useRouter } from "next/navigation";
 export default function AboutMe() {
     const router = useRouter();
 
-  const orgPhotos = [
-    "/org1.jpg",
-    "/org2.jpg",
-    "/org3.jpg",
-    "/org4.jpg",
-  ];
-
   const tools = [
     { name: "Figma", src: "/figma.png" },
     { name: "VSCode", src: "/vscode.png" },

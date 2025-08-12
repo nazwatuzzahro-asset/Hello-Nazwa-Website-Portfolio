@@ -49,9 +49,10 @@ export default function Hero({ onViewProjectClick }: HeroProps) {
       >
         <div className="space-y-6">
           <h1 className="text-2xl md:text-4xl text-gray-900 leading-tight">
-            Hello, I'm{" "}
-            <span className="text-[#B99470] font-bold">Nazwatuzzahro!</span>
-          </h1>
+  Hello, I&apos;m{" "}
+  <span className="text-[#B99470] font-bold">Nazwatuzzahro!</span>
+</h1>
+
 
           <p className="text-lg text-gray-600">
             I am a <span className="font-medium">Web Developer</span> and <span  className="font-medium">UI/UX Designer</span> specializing in building modern, responsive, and user-friendly applications.
