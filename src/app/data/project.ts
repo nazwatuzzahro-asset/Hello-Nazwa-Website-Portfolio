@@ -1,0 +1,55 @@
+// data/projects.ts
+export const projects = [
+  {
+    id: 1,
+    title: "TipMe: Campus Food Delivery Service",
+    description:
+      "We connects busy students with trusted campus runners who deliver meals right to your doorstep—saving you time so you can focus on what matters most.",
+    media: "/ui-ux-tipme.png", // konsisten: ganti image → media
+    link: "https://tipme.site/",
+    skillId: 2, // Frontend Development
+  },
+  {
+    id: 2,
+    title: "Recipedia",
+    description: "Service-Based Recipe Management.",
+    media: "/recipedia-backend.png",
+    link: "https://github.com/alyand/Recipedia",
+    skillId: 3, // Backend Development
+  },
+  {
+    id: 3,
+    title: "MoonA: Next-Gen Child Monitoring",
+    description: "Powered by AI + IoT for Smarter Parenting.",
+    media: "/moona.mp4",
+    link: "https://www.canva.com/design/DAGNJjUgO50/LtGEhhQcxY-g4TY1QWZviQ/edit?utm_content=DAGNJjUgO50&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+    skillId: 1, // UI/UX
+  },
+  {
+    id: 4,
+    title: "BagiSaji: Leftover Redistribution App",
+    description: "Kumpulan komponen UI reusable untuk proyek internal.",
+    media: "/project-bagisaji.png",
+    link: "https://www.behance.net/gallery/231628609/BagiSaji",
+    skillId: 1, // UI/UX Design
+  },
+  {
+    id: 5, // ganti id biar unik
+    title: "MotoRizz: Smart Motorcycle Maintenance Partner",
+    description:
+      "Never miss a service again—ride smoother, longer, and safer.",
+    media: "/motorizz.mp4", // bisa mp4/webm/mov atau jpg/png/gif
+    link: "https://youtu.be/d7Kw1Km4Io0?feature=shared",
+    skillId: 1, // UI/UX Design
+  },
+  {
+    id: 6, // ganti id biar unik
+    title: "SiPadi: Smart Rice Farming Companion",
+    description:
+      "Detect diseases. Get solutions. Grow smarter with AI.",
+    media: "/ui-ux-sipadi.png", // bisa mp4/webm/mov atau jpg/png/gif
+    link: "https://www.canva.com/design/DAGi76DSTzI/DQnN5QUjAVGg0umLkSg9aA/edit?utm_content=DAGi76DSTzI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+    skillId: 1, // UI/UX Design
+  },
+  
+];
