@@ -55,7 +55,7 @@ export default function SkillsSection({ onBack }: SkillsSectionProps) {
               className="object-cover group-hover:brightness-110 transition duration-300"
             />
 
-            <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/70 to-transparent"></div>
 
             <div className="absolute bottom-3 left-3 flex items-center gap-2 text-white">
               <Icon size={24} className="text-[#E4F68F]" />

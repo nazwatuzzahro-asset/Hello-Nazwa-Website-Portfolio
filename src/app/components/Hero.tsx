@@ -4,11 +4,14 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Linkedin, Download, ChevronRight, Github, Mail } from "lucide-react";
+import { useRouter } from "next/navigation"; 
+
 interface HeroProps {
   onViewProjectClick: () => void;
 }
 
 export default function Hero({ onViewProjectClick }: HeroProps) {
+   const router = useRouter();
   const [isHovered, setIsHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -19,15 +22,18 @@ export default function Hero({ onViewProjectClick }: HeroProps) {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Fungsi download CV
   const handleDownloadCV = () => {
-    const cvUrl = "/cv-nazwatuzzahro.pdf"; // letakkan file di folder public
+    const cvUrl = "/cv-nazwatuzzahro.pdf";
     const link = document.createElement("a");
     link.href = cvUrl;
-    link.download = "CV_Nazwatuzzahro.pdf"; // nama file saat download
+    link.download = "CV_Nazwatuzzahro.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  };
+
+  const handleProfileClick = () => {
+    router.push("/about"); // navigasi ke /about
   };
 
   return (
@@ -35,7 +41,6 @@ export default function Hero({ onViewProjectClick }: HeroProps) {
       id="hero"
       className="min-h-screen flex flex-col md:flex-row items-center justify-center gap-10 px-6 md:px-16"
     >
-      {/* Left Content */}
       <motion.div
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
@@ -44,38 +49,34 @@ export default function Hero({ onViewProjectClick }: HeroProps) {
       >
         <div className="space-y-6">
           <h1 className="text-2xl md:text-4xl text-gray-900 leading-tight">
-            Halo, Saya{" "}
+            Hello, I'm{" "}
             <span className="text-[#B99470] font-bold">Nazwatuzzahro!</span>
           </h1>
 
           <p className="text-lg text-gray-600">
-            Saya adalah seorang{" "}
-            <span className="font-medium">Web Developer</span> yang fokus pada
-            pembuatan aplikasi modern, responsif, dan user-friendly.
+            I am a <span className="font-medium">Web Developer</span> and <span  className="font-medium">UI/UX Designer</span> specializing in building modern, responsive, and user-friendly applications.
           </p>
         </div>
 
         <div className="flex justify-center md:justify-start gap-4">
           <button
-  onClick={handleDownloadCV}
-  className="inline-flex items-center justify-center bg-[#FEFAE0] px-3 py-1.5 rounded-full tracking-wide shadow-lg hover:shadow-indigo-500/50 transition-transform duration-300 hover:scale-105 active:scale-95"
->
-  <Download className="text-[#5F6F52] mr-2" size={isMobile ? 16 : 20} />
-  <p className={`text-[#5F6F52] ${isMobile ? "text-sm" : "text-base"}`}>Download CV</p>
-</button>
+            onClick={handleDownloadCV}
+            className="inline-flex items-center justify-center bg-[#FEFAE0] px-3 py-1.5 rounded-full tracking-wide shadow-lg hover:shadow-indigo-500/50 transition-transform duration-300 hover:scale-105 active:scale-95"
+          >
+            <Download className="text-[#5F6F52] mr-2" size={isMobile ? 16 : 20} />
+            <p className={`text-[#5F6F52] ${isMobile ? "text-sm" : "text-base"}`}>Download CV</p>
+          </button>
 
-<button
-  onClick={onViewProjectClick}
-  className="inline-flex items-center justify-center bg-[#FEFAE0] px-3 py-1.5 rounded-full tracking-wide shadow-lg hover:shadow-indigo-500/50 transition-transform duration-300 hover:scale-105 active:scale-95"
->
-  <p className={`text-[#5F6F52] mr-2 ${isMobile ? "text-sm" : "text-base"}`}>What I Do</p>
-  <ChevronRight className="text-[#5F6F52]" size={isMobile ? 16 : 20} />
-</button>
-
+          <button
+            onClick={onViewProjectClick}
+            className="inline-flex items-center justify-center bg-[#FEFAE0] px-3 py-1.5 rounded-full tracking-wide shadow-lg hover:shadow-indigo-500/50 transition-transform duration-300 hover:scale-105 active:scale-95"
+          >
+            <p className={`text-[#5F6F52] mr-2 ${isMobile ? "text-sm" : "text-base"}`}>What I Do</p>
+            <ChevronRight className="text-[#5F6F52]" size={isMobile ? 16 : 20} />
+          </button>
         </div>
       </motion.div>
 
-      {/* Right Image + Tombol */}
       <motion.div
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
@@ -83,12 +84,19 @@ export default function Hero({ onViewProjectClick }: HeroProps) {
         className="flex justify-center relative"
       >
         <div
-          className="relative flex items-center"
+          className="relative flex items-center cursor-pointer"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
+          onClick={handleProfileClick} // klik foto
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") handleProfileClick();
+          }}
+          aria-label="Go to About page"
         >
           <motion.div
-            className="relative w-60 h-60 md:w-80 md:h-80 overflow-hidden rounded-lg shadow-[0_8px_0_rgba(0,0,0,0.08)] cursor-pointer"
+            className="relative w-60 h-60 md:w-80 md:h-80 overflow-hidden rounded-lg shadow-[0_8px_0_rgba(0,0,0,0.08)]"
             whileHover={{ scale: 1.05, rotate: 2 }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300 }}
@@ -102,7 +110,6 @@ export default function Hero({ onViewProjectClick }: HeroProps) {
             />
           </motion.div>
 
-          {/* Tombol muncul selalu di mobile, hover di desktop */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={
@@ -118,7 +125,7 @@ export default function Hero({ onViewProjectClick }: HeroProps) {
               onClick={() =>
                 window.open("https://github.com/nazwatuzzahro-asset", "_blank")
               }
-              aria-label="Github"
+              aria-label="GitHub"
             >
               <Github size={20} />
             </button>
