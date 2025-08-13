@@ -99,22 +99,23 @@ export default function AboutMe() {
               Skills
             </h2>
             {/* Filter Buttons */}
-            <div className="flex flex-wrap gap-2 mb-4"> 
-                <p className="text-[#B99470]">Choose My Role:</p>
-              {roles.map((role) => (
-                <button
-                  key={role}
-                  onClick={() => setSelectedRole(role)}
-                  className={`px-3 py-1 rounded-full text-sm shadow ${
-                    selectedRole === role
-                      ? "bg-[#B99470] text-white"
-                      : "bg-[#FEFAE0] text-[#B99470]"
-                  }`}
-                >
-                  {role}
-                </button>
-              ))}
-            </div>
+<div className="flex gap-2 mb-4 overflow-x-auto scrollbar-thin scrollbar-thumb-[#B99470] scrollbar-track-gray-200 whitespace-nowrap py-2">
+  <p className="text-[#B99470] flex-shrink-0">Choose My Role:</p>
+  {roles.map((role) => (
+    <button
+      key={role}
+      onClick={() => setSelectedRole(role)}
+      className={`px-3 py-1 rounded-full text-sm shadow flex-shrink-0 ${
+        selectedRole === role
+          ? "bg-[#B99470] text-white"
+          : "bg-[#FEFAE0] text-[#B99470]"
+      }`}
+    >
+      {role}
+    </button>
+  ))}
+</div>
+
             {/* Skills List */}
             <ul className="flex flex-wrap gap-3 sm:gap-4 text-gray-700">
               {filteredSkills.map((skill) => (
