@@ -39,7 +39,7 @@ export const projects = [
     description:
       "Never miss a service again—ride smoother, longer, and safer.",
     media: "/motorizz.mp4", // bisa mp4/webm/mov atau jpg/png/gif
-    link: "https://youtu.be/d7Kw1Km4Io0?feature=shared",
+    link: "https://www.figma.com/proto/DBR9mmEyB34m8xhykObzMv/DESIGN-UI-UX?page-id=1%3A3&node-id=40-236&node-type=frame&viewport=1467%2C-145%2C0.16&t=z7e34WLfHuQLCBw3-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=129%3A1824",
     skillId: 1, // UI/UX Design
   },
   {

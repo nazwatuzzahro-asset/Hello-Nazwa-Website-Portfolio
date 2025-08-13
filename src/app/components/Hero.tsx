@@ -8,9 +8,10 @@ import { useRouter } from "next/navigation";
 
 interface HeroProps {
   onViewProjectClick: () => void;
+  onScrollToExperience: () => void; // ✅ Tambahan
 }
 
-export default function Hero({ onViewProjectClick }: HeroProps) {
+export default function Hero({ onViewProjectClick, onScrollToExperience }: HeroProps) {
   const router = useRouter();
   const [isHovered, setIsHovered] = useState(false);
   const [isTabletOrMobile, setIsTabletOrMobile] = useState(false);
@@ -38,10 +39,9 @@ export default function Hero({ onViewProjectClick }: HeroProps) {
 
   return (
     <section
-  id="hero"
-  className="min-h-screen flex flex-col lg:flex-row items-center justify-center gap-10 px-6 md:px-12 lg:px-16 pb-6 sm:pb-8 md:pb-10 lg:pb-10"
->
-
+      id="hero"
+      className="min-h-screen flex flex-col lg:flex-row items-center justify-center gap-10 px-6 md:px-12 lg:px-16 pb-6 sm:pb-8 md:pb-10 lg:pb-10"
+    >
       {/* Text Section */}
       <motion.div
         initial={{ opacity: 0, x: -50 }}
@@ -63,7 +63,7 @@ export default function Hero({ onViewProjectClick }: HeroProps) {
         </div>
 
         {/* Buttons */}
-        <div className="flex justify-center lg:justify-start gap-4">
+        <div className="flex flex-wrap justify-center lg:justify-start gap-4">
           {/* Button CV */}
           <button
             onClick={handleDownloadCV}
@@ -73,25 +73,27 @@ export default function Hero({ onViewProjectClick }: HeroProps) {
               className="text-[#5F6F52] mr-2"
               size={isTabletOrMobile ? 16 : 20}
             />
-            <p
-              className={`text-[#5F6F52] ${
-                isTabletOrMobile ? "text-sm" : "text-base"
-              }`}
-            >
+            <p className={`text-[#5F6F52] ${isTabletOrMobile ? "text-sm" : "text-base"}`}>
               Download CV
             </p>
           </button>
 
-          {/* Button What I Do */}
+          {/* Button Experience */}
+          <button
+            onClick={onScrollToExperience}
+            className="inline-flex items-center justify-center bg-[#FEFAE0] px-3 py-1.5 rounded-full tracking-wide shadow-lg hover:shadow-indigo-500/50 transition-transform duration-300 hover:scale-105 active:scale-95"
+          >
+            <p className={`text-[#5F6F52] ${isTabletOrMobile ? "text-sm" : "text-base"}`}>
+              Experience
+            </p>
+          </button>
+
+           {/* Button What I Do */}
           <button
             onClick={onViewProjectClick}
             className="inline-flex items-center justify-center bg-[#FEFAE0] px-3 py-1.5 rounded-full tracking-wide shadow-lg hover:shadow-indigo-500/50 transition-transform duration-300 hover:scale-105 active:scale-95"
           >
-            <p
-              className={`text-[#5F6F52] mr-2 ${
-                isTabletOrMobile ? "text-sm" : "text-base"
-              }`}
-            >
+            <p className={`text-[#5F6F52] mr-2 ${isTabletOrMobile ? "text-sm" : "text-base"}`}>
               What I Do
             </p>
             <ChevronRight
@@ -99,6 +101,7 @@ export default function Hero({ onViewProjectClick }: HeroProps) {
               size={isTabletOrMobile ? 16 : 20}
             />
           </button>
+
         </div>
       </motion.div>
 
@@ -122,7 +125,7 @@ export default function Hero({ onViewProjectClick }: HeroProps) {
           aria-label="Go to About page"
         >
           <motion.div
-            className="relative w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 overflow-hidden rounded-lg shadow-[0_8px_0_rgba(0,0,0,0.08)]"
+            className="relative w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 overflow-hidden rounded-lg shadow-[0_6px_0_rgba(0,0,0,0.08)]"
             whileHover={{ scale: 1.05, rotate: 2 }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300 }}
@@ -133,6 +136,25 @@ export default function Hero({ onViewProjectClick }: HeroProps) {
               fill
               className="object-cover"
               priority
+            />
+
+            {/* Animated click hand - datang dari kanan */}
+            <motion.img
+              src="/clicks.png"
+              alt="Click me"
+              className="absolute bottom-2 right-1 w-10 h-10 opacity-80"
+              initial={{ x: 80, opacity: 0 }}
+              animate={{
+                x: [80, 5, 0],
+                opacity: [0, 1, 1],
+                scale: [1, 0.6, 1],
+              }}
+              transition={{
+                repeat: Infinity,
+                repeatDelay: 1,
+                duration: 1.2,
+                ease: "easeInOut",
+              }}
             />
           </motion.div>
 
@@ -147,7 +169,6 @@ export default function Hero({ onViewProjectClick }: HeroProps) {
             transition={{ type: "spring", stiffness: 200, damping: 20 }}
             className="absolute right-[-56px] lg:right-[-64px] top-1/2 -translate-y-1/2 flex flex-col gap-4"
           >
-            {/* GitHub */}
             <button
               className="p-3 rounded-full bg-[#B99470] text-white shadow-lg hover:bg-[#a07d55] transition"
               onClick={() =>
@@ -157,7 +178,6 @@ export default function Hero({ onViewProjectClick }: HeroProps) {
             >
               <Github size={20} />
             </button>
-            {/* Email */}
             <button
               className="p-3 rounded-full bg-[#B99470] text-white shadow-lg hover:bg-[#a07d55] transition"
               onClick={() => window.open("mailto:nazwatuzzahroo@gmail.com")}
@@ -165,7 +185,6 @@ export default function Hero({ onViewProjectClick }: HeroProps) {
             >
               <Mail size={20} />
             </button>
-            {/* LinkedIn */}
             <button
               className="p-3 rounded-full bg-[#B99470] text-white shadow-lg hover:bg-[#a07d55] transition"
               onClick={() =>
