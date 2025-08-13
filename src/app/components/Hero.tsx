@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 
 interface HeroProps {
   onViewProjectClick: () => void;
-  onScrollToExperience: () => void; // ✅ Tambahan
+  onScrollToExperience: () => void;
 }
 
 export default function Hero({ onViewProjectClick, onScrollToExperience }: HeroProps) {
@@ -40,78 +40,57 @@ export default function Hero({ onViewProjectClick, onScrollToExperience }: HeroP
   return (
     <section
       id="hero"
-      className="min-h-screen flex flex-col lg:flex-row items-center justify-center gap-10 px-6 md:px-12 lg:px-16 pb-6 sm:pb-8 md:pb-10 lg:pb-10"
+      className="min-h-screen flex flex-col lg:flex-row items-center justify-center gap-10 px-6 md:px-12 lg:px-16"
     >
-      {/* Text Section */}
+      {/* Left Section - Foto & Social Icons */}
       <motion.div
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-center lg:text-left max-w-xl flex flex-col gap-6"
-      >
-        <div className="space-y-6">
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl text-gray-900 leading-tight">
-            Hello, I&apos;m{" "}
-            <span className="text-[#B99470] font-bold">Nazwatuzzahro!</span>
-          </h1>
-
-          <p className="text-base sm:text-lg text-gray-600">
-            I am a <span className="font-medium">Web Developer</span> and{" "}
-            <span className="font-medium">UI/UX Designer</span> specializing in
-            building modern, responsive, and user-friendly applications.
-          </p>
-        </div>
-
-        {/* Buttons */}
-        <div className="flex flex-wrap justify-center lg:justify-start gap-4">
-          {/* Button CV */}
-          <button
-            onClick={handleDownloadCV}
-            className="inline-flex items-center justify-center bg-[#FEFAE0] px-3 py-1.5 rounded-full tracking-wide shadow-lg hover:shadow-indigo-500/50 transition-transform duration-300 hover:scale-105 active:scale-95"
-          >
-            <Download
-              className="text-[#5F6F52] mr-2"
-              size={isTabletOrMobile ? 16 : 20}
-            />
-            <p className={`text-[#5F6F52] ${isTabletOrMobile ? "text-sm" : "text-base"}`}>
-              Download CV
-            </p>
-          </button>
-
-          {/* Button Experience */}
-          <button
-            onClick={onScrollToExperience}
-            className="inline-flex items-center justify-center bg-[#FEFAE0] px-3 py-1.5 rounded-full tracking-wide shadow-lg hover:shadow-indigo-500/50 transition-transform duration-300 hover:scale-105 active:scale-95"
-          >
-            <p className={`text-[#5F6F52] ${isTabletOrMobile ? "text-sm" : "text-base"}`}>
-              Experience
-            </p>
-          </button>
-
-           {/* Button What I Do */}
-          <button
-            onClick={onViewProjectClick}
-            className="inline-flex items-center justify-center bg-[#FEFAE0] px-3 py-1.5 rounded-full tracking-wide shadow-lg hover:shadow-indigo-500/50 transition-transform duration-300 hover:scale-105 active:scale-95"
-          >
-            <p className={`text-[#5F6F52] mr-2 ${isTabletOrMobile ? "text-sm" : "text-base"}`}>
-              What I Do
-            </p>
-            <ChevronRight
-              className="text-[#5F6F52]"
-              size={isTabletOrMobile ? 16 : 20}
-            />
-          </button>
-
-        </div>
-      </motion.div>
-
-      {/* Profile Image + Social Icons */}
-      <motion.div
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6 }}
         className="flex justify-center relative"
       >
+        {/* Social icons di kiri gambar */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={
+            isHovered || isTabletOrMobile
+              ? { opacity: 1, x: 0 }
+              : { opacity: 0, x: -20 }
+          }
+          transition={{ type: "spring", stiffness: 200, damping: 20 }}
+          className="absolute left-[-56px] lg:left-[-64px] top-1/2 -translate-y-1/2 flex flex-col gap-4"
+        >
+          <button
+            className="p-3 rounded-full bg-[#B99470] text-white shadow-lg hover:bg-[#a07d55] transition"
+            onClick={() =>
+              window.open("https://github.com/nazwatuzzahro-asset", "_blank")
+            }
+            aria-label="GitHub"
+          >
+            <Github size={20} />
+          </button>
+          <button
+            className="p-3 rounded-full bg-[#B99470] text-white shadow-lg hover:bg-[#a07d55] transition"
+            onClick={() => window.open("mailto:nazwatuzzahroo@gmail.com")}
+            aria-label="Email"
+          >
+            <Mail size={20} />
+          </button>
+          <button
+            className="p-3 rounded-full bg-[#B99470] text-white shadow-lg hover:bg-[#a07d55] transition"
+            onClick={() =>
+              window.open(
+                "https://www.linkedin.com/in/nazwatuzzahro-65186820b/",
+                "_blank"
+              )
+            }
+            aria-label="LinkedIn"
+          >
+            <Linkedin size={20} />
+          </button>
+        </motion.div>
+
+        {/* Foto Profil */}
         <div
           className="relative flex items-center cursor-pointer"
           onMouseEnter={() => setIsHovered(true)}
@@ -131,16 +110,14 @@ export default function Hero({ onViewProjectClick, onScrollToExperience }: HeroP
             transition={{ type: "spring", stiffness: 300 }}
           >
             <Image
-              src="/profile.png"
+              src="/profile-new.png"
               alt="Profile Nazwatuzzahro"
               fill
               className="object-cover"
               priority
             />
-
-            {/* Animated click hand - datang dari kanan */}
             <motion.img
-              src="/clicks.png"
+              src="/clicks-brown.png"
               alt="Click me"
               className="absolute bottom-2 right-1 w-10 h-10 opacity-80"
               initial={{ x: 80, opacity: 0 }}
@@ -157,48 +134,75 @@ export default function Hero({ onViewProjectClick, onScrollToExperience }: HeroP
               }}
             />
           </motion.div>
-
-          {/* Social icons */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={
-              isHovered || isTabletOrMobile
-                ? { opacity: 1, x: 0 }
-                : { opacity: 0, x: 20 }
-            }
-            transition={{ type: "spring", stiffness: 200, damping: 20 }}
-            className="absolute right-[-56px] lg:right-[-64px] top-1/2 -translate-y-1/2 flex flex-col gap-4"
-          >
-            <button
-              className="p-3 rounded-full bg-[#B99470] text-white shadow-lg hover:bg-[#a07d55] transition"
-              onClick={() =>
-                window.open("https://github.com/nazwatuzzahro-asset", "_blank")
-              }
-              aria-label="GitHub"
-            >
-              <Github size={20} />
-            </button>
-            <button
-              className="p-3 rounded-full bg-[#B99470] text-white shadow-lg hover:bg-[#a07d55] transition"
-              onClick={() => window.open("mailto:nazwatuzzahroo@gmail.com")}
-              aria-label="Email"
-            >
-              <Mail size={20} />
-            </button>
-            <button
-              className="p-3 rounded-full bg-[#B99470] text-white shadow-lg hover:bg-[#a07d55] transition"
-              onClick={() =>
-                window.open(
-                  "https://www.linkedin.com/in/nazwatuzzahro-65186820b/",
-                  "_blank"
-                )
-              }
-              aria-label="LinkedIn"
-            >
-              <Linkedin size={20} />
-            </button>
-          </motion.div>
         </div>
+      </motion.div>
+
+      {/* Right Section - Text & Buttons */}
+      <motion.div
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6 }}
+        className="text-center lg:text-left max-w-xl flex flex-col gap-6"
+      >
+        <div className="space-y-6">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl text-[#153448] leading-tight">
+            Hello, I&apos;m{" "}
+            <span className="text-[#153448] font-bold">Nazwatuzzahro!</span>
+          </h1>
+          <p className="text-base sm:text-lg text-[#153448]">
+            I am a <span className="font-medium">Web Developer</span> and{" "}
+            <span className="font-medium">UI/UX Designer</span> specializing in
+            building modern, responsive, and user-friendly applications.
+          </p>
+        </div>
+
+        {/* Buttons */}
+<div className="flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-4">
+  <button
+    onClick={handleDownloadCV}
+    className="inline-flex items-center justify-center bg-[#FEFAE0] 
+               px-2 sm:px-3 py-1 sm:py-1.5 rounded-full tracking-wide shadow-lg 
+               hover:shadow-indigo-500/50 transition-transform duration-300 
+               hover:scale-105 active:scale-95 flex-shrink"
+  >
+    <Download
+      className="text-[#5F6F52] mr-1 sm:mr-2"
+      size={isTabletOrMobile ? 14 : 20}
+    />
+    <p className={`text-[#5F6F52] ${isTabletOrMobile ? "text-xs" : "text-base"}`}>
+      Download CV
+    </p>
+  </button>
+
+  <button
+    onClick={onScrollToExperience}
+    className="inline-flex items-center justify-center bg-[#FEFAE0] 
+               px-2 sm:px-3 py-1 sm:py-1.5 rounded-full tracking-wide shadow-lg 
+               hover:shadow-indigo-500/50 transition-transform duration-300 
+               hover:scale-105 active:scale-95 flex-shrink"
+  >
+    <p className={`text-[#5F6F52] ${isTabletOrMobile ? "text-xs" : "text-base"}`}>
+      Experience
+    </p>
+  </button>
+
+  <button
+    onClick={onViewProjectClick}
+    className="inline-flex items-center justify-center bg-[#FEFAE0] 
+               px-2 sm:px-3 py-1 sm:py-1.5 rounded-full tracking-wide shadow-lg 
+               hover:shadow-[#153448]/50 transition-transform duration-300 
+               hover:scale-105 active:scale-95 flex-shrink"
+  >
+    <p className={`text-[#5F6F52] mr-1 sm:mr-2 ${isTabletOrMobile ? "text-xs" : "text-base"}`}>
+      What I Do
+    </p>
+    <ChevronRight
+      className="text-[#5F6F52]"
+      size={isTabletOrMobile ? 14 : 20}
+    />
+  </button>
+</div>
+
       </motion.div>
     </section>
   );

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Briefcase } from "lucide-react";
+import Image from "next/image";
 
 export default function Experience() {
   const experiences = [
@@ -43,18 +44,25 @@ export default function Experience() {
   ];
 
   return (
-    <section
-      className="relative py-2 px-6 md:px-16"
-      id="experience"
-    >
-      <div className="max-w-5xl mx-auto">
+    <section className="relative py-4 px-6 md:px-16 overflow-hidden" id="experience">
+     { /* Bird background */}
+<div className="absolute top-0 left-0 w-full aspect-[16/9] opacity-50">
+  <Image
+    src="/bird.png"
+    alt="Bird"
+    fill
+    className="object-cover opacity-80"
+  />
+</div>
+
+      <div className="max-w-5xl mx-auto relative z-10">
         {/* Section Title */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: false }} 
-          className="text-3xl md:text-4xl font-bold text-[#B99470] mb-12 text-center"
+          viewport={{ once: false }}
+          className="text-3xl md:text-4xl font-bold text-white mb-12 text-center drop-shadow-lg"
         >
           Experience
         </motion.h2>
@@ -67,7 +75,7 @@ export default function Experience() {
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
-              viewport={{ once: false }} // animasi bisa muncul berulang
+              viewport={{ once: false }}
               className="relative pl-10 mb-12"
             >
               {/* Circle Overlapping Line */}
@@ -76,13 +84,11 @@ export default function Experience() {
               </span>
 
               {/* Content */}
-              <div className="backdrop-blur-sm bg-white/60 rounded-xl shadow-md p-6">
+              <div className="backdrop-blur-sm bg-white rounded-xl shadow-md p-6">
                 <span className="text-sm font-semibold text-[#B99470]">
                   {exp.year}
                 </span>
-                <h3 className="text-lg font-bold text-gray-800">
-                  {exp.role}
-                </h3>
+                <h3 className="text-lg font-bold text-gray-800">{exp.role}</h3>
                 <p className="text-gray-600 mb-2">{exp.company}</p>
                 <p className="text-gray-600">{exp.description}</p>
               </div>
