@@ -15,7 +15,7 @@ export default function Footer() {
       />
 
       {/* Content di dekat bawah */}
-      <div className="absolute inset-0 flex flex-col justify-end items-center text-white gap-6 px-6 md:px-20 pb-20">
+      <div className="absolute inset-0 flex flex-col justify-end items-center text-[#1d5a41] gap-6 px-6 md:px-20 pb-20">
         {/* Judul */}
         <h3 className="text-lg font-semibold tracking-wide drop-shadow-md text-center">
           Contact me through:
@@ -28,7 +28,7 @@ export default function Footer() {
             className="flex items-center justify-center lg:justify-start gap-3 hover:underline transition-colors duration-300"
             aria-label="Send email"
           >
-            <Mail size={24} className="text-white" />
+            <Mail size={24} className="text-[#1d5a41]" />
             <span className="font-medium">nazwatuzzahroo@gmail.com</span>
           </a>
 
@@ -37,12 +37,12 @@ export default function Footer() {
             className="flex items-center justify-center lg:justify-start gap-3 hover:underline transition-colors duration-300"
             aria-label="Call phone"
           >
-            <Phone size={24} className="text-white" />
+            <Phone size={24} className="text-[#1d5a41]" />
             <span className="font-medium">+62 821-1280-8708</span>
           </a>
 
-          <div className="flex items-center justify-center lg:justify-start gap-3 text-white">
-            <MapPin size={24} className="text-white" />
+          <div className="flex items-center justify-center lg:justify-start gap-3 text-[#1d5a41]">
+            <MapPin size={24} className="text-[#1d5a41]" />
             <address className="not-italic font-medium">Bekasi, Indonesia</address>
           </div>
         </div>
