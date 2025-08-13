@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { projects } from "../data/project";
@@ -11,6 +11,14 @@ export default function ProjectClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const skillId = searchParams.get("skillId");
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulasi loading (misal ambil data dari API)
+    const timer = setTimeout(() => setLoading(false), 800);
+    return () => clearTimeout(timer);
+  }, []);
 
   const filteredProjects = useMemo(() => {
     if (!skillId) return projects;
@@ -22,6 +30,16 @@ export default function ProjectClient() {
     const lower = src.toLowerCase();
     return lower.endsWith(".mp4") || lower.endsWith(".webm") || lower.endsWith(".mov");
   };
+
+  // Skeleton Card
+  const SkeletonCard = () => (
+    <div className="rounded-xl border border-gray-300 bg-white shadow-md p-4 animate-pulse">
+      <div className="w-full aspect-[16/9] bg-gray-200 rounded-md mb-3" />
+      <div className="h-4 bg-gray-200 rounded w-3/4 mb-2" />
+      <div className="h-3 bg-gray-200 rounded w-full mb-1" />
+      <div className="h-3 bg-gray-200 rounded w-5/6" />
+    </div>
+  );
 
   return (
     <section
@@ -39,11 +57,9 @@ export default function ProjectClient() {
           className="object-cover"
           priority
         />
-        {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-white/100 to-transparent" />
       </div>
 
-      {/* Konten utama */}
       <div className="relative z-10">
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-8 text-center text-[#B99470]">
           Project Showcase
@@ -51,44 +67,43 @@ export default function ProjectClient() {
 
         {/* Grid Projects */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 w-full">
-          {filteredProjects.map(({ id, title, description, media, link }) => (
-            <motion.div
-              key={id}
-              onClick={() => window.open(link, "_blank")}
-              className="group rounded-lg overflow-hidden shadow-md bg-white flex flex-col cursor-pointer"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <div className="relative w-full aspect-[16/9]">
-                {isVideoFile(media) ? (
-                  <video
-                    src={media}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="absolute inset-0 w-full h-full object-cover group-hover:brightness-110 transition duration-300"
-                  />
-                ) : (
-                  <Image
-                    src={media || "/placeholder.png"}
-                    alt={title}
-                    fill
-                    className="object-cover group-hover:brightness-110 transition duration-300"
-                  />
-                )}
-              </div>
-              <div className="p-3 sm:p-4 flex flex-col flex-1">
-                <h3 className="font-semibold text-sm sm:text-base md:text-lg text-gray-900 mb-1">
-                  {title}
-                </h3>
-                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                  {description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+          {loading
+            ? Array.from({ length: 6 }).map((_, i) => <SkeletonCard key={i} />)
+            : filteredProjects.map(({ id, title, description, media, link }) => (
+                <motion.div
+                  key={id}
+                  onClick={() => window.open(link, "_blank")}
+                  className="group rounded-xl border border-gray-300 bg-white shadow-md p-4 flex flex-col cursor-pointer hover:shadow-lg transition"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="relative w-full aspect-[16/9] rounded-md overflow-hidden mb-3">
+                    {isVideoFile(media) ? (
+                      <video
+                        src={media}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="absolute inset-0 w-full h-full object-cover group-hover:brightness-110 transition duration-300"
+                      />
+                    ) : (
+                      <Image
+                        src={media || "/placeholder.png"}
+                        alt={title}
+                        fill
+                        className="object-cover group-hover:brightness-110 transition duration-300"
+                      />
+                    )}
+                  </div>
+                  <h3 className="font-semibold text-sm sm:text-base md:text-lg text-gray-900 mb-1">
+                    {title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed flex-1">
+                    {description}
+                  </p>
+                </motion.div>
+              ))}
         </div>
 
         {/* Tombol back */}

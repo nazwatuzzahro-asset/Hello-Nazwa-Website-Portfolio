@@ -43,11 +43,21 @@ export default function AboutMe() {
 
   return (
     <section
-      className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 py-10 sm:py-16"
+      className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 py-10 sm:py-16 overflow-hidden"
       style={{
         background: "linear-gradient(-20deg, #ffffff 40%, #E4F68F 100%)",
       }}
     >
+      {/* Bird background */}
+      <div className="absolute top-0 left-0 w-full aspect-[16/9] opacity-40 pointer-events-none">
+        <Image
+          src="/bird.png"
+          alt="Bird"
+          fill
+          className="object-cover opacity-80"
+        />
+      </div>
+
       <motion.div
         initial={{ y: 100, opacity: 0, scale: 0.95, rotateX: 10 }}
         animate={{ y: 0, opacity: 1, scale: 1, rotateX: 0 }}
@@ -56,11 +66,11 @@ export default function AboutMe() {
           ease: [0.25, 0.8, 0.25, 1],
           type: "spring",
         }}
-        className="max-w-4xl w-full bg-white rounded-xl shadow-lg p-6 sm:p-8 md:p-16 flex flex-col gap-8 origin-bottom"
+        className="relative z-10 max-w-4xl w-full bg-white rounded-xl shadow-lg p-6 sm:p-8 md:p-16 flex flex-col gap-8 origin-bottom border border-gray-200"
       >
         {/* Header */}
         <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8 text-center sm:text-left">
-          <div className="relative w-32 h-32 sm:w-48 sm:h-48 rounded-full overflow-hidden shadow-lg flex-shrink-0">
+          <div className="relative w-28 h-28 sm:w-36 sm:h-36 rounded-full overflow-hidden shadow-md border-4 border-white bg-gray-50 flex-shrink-0">
             <Image
               src="/about.png"
               alt="Nazwatuzzahro Profile"
@@ -99,22 +109,22 @@ export default function AboutMe() {
               Skills
             </h2>
             {/* Filter Buttons */}
-<div className="flex gap-2 mb-4 overflow-x-auto scrollbar-thin scrollbar-thumb-[#B99470] scrollbar-track-gray-200 whitespace-nowrap py-2">
-  <p className="text-[#B99470] flex-shrink-0">Choose My Role:</p>
-  {roles.map((role) => (
-    <button
-      key={role}
-      onClick={() => setSelectedRole(role)}
-      className={`px-3 py-1 rounded-full text-sm shadow flex-shrink-0 ${
-        selectedRole === role
-          ? "bg-[#B99470] text-white"
-          : "bg-[#FEFAE0] text-[#B99470]"
-      }`}
-    >
-      {role}
-    </button>
-  ))}
-</div>
+            <div className="flex gap-2 mb-4 overflow-x-auto scrollbar-thin scrollbar-thumb-[#B99470] scrollbar-track-gray-200 whitespace-nowrap py-2">
+              <p className="text-[#B99470] flex-shrink-0">Choose My Role:</p>
+              {roles.map((role) => (
+                <button
+                  key={role}
+                  onClick={() => setSelectedRole(role)}
+                  className={`px-3 py-1 rounded-full text-sm shadow flex-shrink-0 ${
+                    selectedRole === role
+                      ? "bg-[#B99470] text-white"
+                      : "bg-[#FEFAE0] text-[#B99470]"
+                  }`}
+                >
+                  {role}
+                </button>
+              ))}
+            </div>
 
             {/* Skills List */}
             <ul className="flex flex-wrap gap-3 sm:gap-4 text-gray-700">
@@ -136,7 +146,10 @@ export default function AboutMe() {
             </h2>
             <ul className="flex flex-wrap gap-4 sm:gap-6">
               {tools.map(({ name, src }) => (
-                <li key={name} className="w-10 h-10 sm:w-12 sm:h-12 relative">
+                <li
+                  key={name}
+                  className="w-10 h-10 sm:w-12 sm:h-12 relative p-1 bg-white border border-gray-200 rounded-lg shadow-sm"
+                >
                   <Image
                     src={src}
                     alt={name}

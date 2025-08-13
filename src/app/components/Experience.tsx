@@ -88,9 +88,9 @@ export default function Experience() {
                 <span className="text-sm font-semibold text-[#B99470]">
                   {exp.year}
                 </span>
-                <h3 className="text-lg font-bold text-gray-800">{exp.role}</h3>
-                <p className="text-gray-600 mb-2">{exp.company}</p>
-                <p className="text-gray-600">{exp.description}</p>
+                <h3 className="text-lg font-bold text-[#153448]">{exp.role}</h3>
+                <p className="text-[#153448] mb-2">{exp.company}</p>
+                <p className="text-[#153448]">{exp.description}</p>
               </div>
             </motion.div>
           ))}

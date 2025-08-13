@@ -57,7 +57,7 @@ export const projects = [
     description:
       "An application that helps you manage tasks, stay focused, and achieve your goals with clarity and efficiency..",
     media: "/ui-ux-focuslist.png", // bisa mp4/webm/mov atau jpg/png/gif
-    link: "https://www.canva.com/design/DAGi76DSTzI/DQnN5QUjAVGg0umLkSg9aA/edit?utm_content=DAGi76DSTzI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+    link: "https://www.canva.com/design/DAGqDZESI08/Zo4ibHtmp5GgXfM2xo9IgQ/edit?utm_content=DAGqDZESI08&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
     skillId: 1, // UI/UX Design
   },
   
