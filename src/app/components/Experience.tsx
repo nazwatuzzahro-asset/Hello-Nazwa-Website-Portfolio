@@ -7,35 +7,35 @@ import Image from "next/image";
 export default function Experience() {
   const experiences = [
     {
-      year: "Juni 2025",
+      year: "June 2025",
       role: "Backend Developer Recipedia Service",
       company: "Recipedia Team",
       description:
         "Responsible for building the backend microservice for the Recipe Service, including data modeling, route creation, and other configurations. Implemented a service-oriented architecture using MQTT as a message broker for inter-service communication.",
     },
     {
-      year: "Mei 2025 - Now",
+      year: "May 2025 - Now",
       role: "System Analyst Website Android Portal ",
       company: "KSM Android",
       description:
         "Analyze system requirements based on the needs of users and stakeholders. Design system flow diagrams, use cases, activity diagrams, and entity relationship diagrams (ERD) for both backend and frontend requirements.",
     },
     {
-      year: "April - Juni 2025",
+      year: "April - June 2025",
       role: "Frontend Developer for Food Delivery Service Website",
       company: "Tipme Team",
       description:
         "Participated in a team to design the application flow and create interactive user interface designs. Developed a dynamic interface for the ‘Titipan’ website using Next.js and Tailwind CSS, including a multi-product shopping cart feature. Retrieved product and transaction data from the server using APIs",
     },
     {
-      year: "2024",
+      year: "September - December 2024",
       role: "UI/UX Designer for Leftover Redistribution App (BagiSaji) ",
       company: "KSM Android",
       description:
         "Conducted user research on managing leftover food, created personas and journey maps, adapted designs from testing and analytics, applied UCD principles, developed wireframes and high-fidelity prototypes in Figma, and produced interactive videos to present design concepts and user flows.",
     },
     {
-      year: "2024",
+      year: "August 2024",
       role: "UI/UX Designer for AI- and IoT-Based Child Monitoring App (MoonA)",
       company: "The Fairy Team",
       description:
